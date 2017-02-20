@@ -8,12 +8,12 @@ abstract class Tag {
 
 	public function __construct($attrs)
 	{
-		if(!is_array($attrs))
+		if(!is_array($attrs) AND isset(static::$defaultAttr))
 		{
 			$attrs = array(static::$defaultAttr => $attrs);
 		}
 
-		$this->attrs = array_merge($this->attrs, $attrs);
+		$this->attrs = array_merge($this->attrs, (Array) $attrs);
 	}
 
 	public function __call($name, $arguments)
